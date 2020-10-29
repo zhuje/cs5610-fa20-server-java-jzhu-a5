@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*")
 public class WidgetController {
+
     WidgetService service = new WidgetService();
 
     @GetMapping("/hello")
@@ -19,21 +20,29 @@ public class WidgetController {
         return "Hello World!!";
     }
 
+    /*
+        + findWidgetsForTopic()
+     */
     @GetMapping("/api/topics/{topicId}/widgets")
     public List<Widget> findWidgetsForTopic(
-            @PathVariable("topicId") String topicId) {
-        return service.findWidgetsForTopic(topicId);
+            @PathVariable("topicId") String topicId) { // Parse 'topicId' then pass it as into 'String topicId'
+        System.out.println("findwidgetsForTopic reached, topicID is : " + topicId);
+        return service.findWidgetsForTopic(topicId); // now we use use the instantiated var 'topicId' to pass to 'findWidgetsForTopic(topicId')
     }
+
+
 
     @GetMapping("/api/widgets")
     public List<Widget> findAllWidgets() {
         return service.findAllWidgets();
     }
+
     @GetMapping("/api/widgets/{wid}")
     public Widget findWidgetById(
             @PathVariable("wid") String widgetId) {
         return service.findWidgetById(widgetId);
     }
+
     @PostMapping("/api/widgets")
     public Widget createWidget(
             @RequestBody Widget widget) {

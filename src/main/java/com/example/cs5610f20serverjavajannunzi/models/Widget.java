@@ -12,6 +12,7 @@ public class Widget {
         this.type = type;
     }
 
+    // + Constructor () that takes a 'topicID'
     public Widget(String id, String name, String type, String topicId) {
         this.id = id;
         this.name = name;
