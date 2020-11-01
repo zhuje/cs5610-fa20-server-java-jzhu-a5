@@ -5,6 +5,7 @@ import com.example.cs5610f20serverjavajannunzi.models.Widget;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 // + WidgetService Class -- the functions within this class provides access to the database.
@@ -67,4 +68,40 @@ public class WidgetService {
         }
         return 0;
     }
+
+
+    /*
+        + deleteWidget() :: JZ
+        Get the number of widgets before and after the filter.
+        If successful (there is 1 less widget than before) then
+        return 1, else return 0. Widgets are streamed and filtered.
+        'stream()' iterates through the list of widgets.
+        'filter()' applies a predicate to the stream.
+        Predicate -- for the current iteration of widget
+        get its id using '.getId()' if it matches the passed in
+        argument, widgetId, then we found the widget we're suppose
+        to delete -- exclude this from the collection.
+        'Collectors.toList()' -- return the list (should
+        contain all the widgets EXCEPT for the one we filtered out).
+     */
+    public Integer deleteWidget(String widgetId){
+
+        int numWidgetsBeforeDelete = widgets.size();
+        widgets = widgets.stream().filter(widget ->
+                !widget.getId().equals(widgetId)).collect(Collectors.toList());
+        int numWidgetsAfterDelete = widgets.size();
+
+        if ( numWidgetsBeforeDelete - 1 == numWidgetsAfterDelete){
+            return 1;
+        }
+      return 0;
+    }
+
+
+
+
+
+
+
+
 }
