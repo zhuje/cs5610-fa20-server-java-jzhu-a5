@@ -30,10 +30,11 @@ public class WidgetController {
 
     /*
         + findWidgetsForTopic()
+        @PathVariable("topicId") String topicId) --
+        Parse 'topicId' then pass it as into 'String topicId'
      */
-    @GetMapping("/api/topics/{topicId}/widgets")
-    public List<Widget> findWidgetsForTopic(@PathVariable("topicId") String topicId) { // Parse 'topicId' then pass it as into 'String topicId'
-        System.out.println("findwidgetsForTopic reached, topicID is : " + topicId);
+    @GetMapping("/api/topics/{tid}/widgets")
+    public List<Widget> findWidgetsForTopic(@PathVariable("tid") String topicId) {
         return service.findWidgetsForTopic(topicId); // now we use use the instantiated var 'topicId' to pass to 'findWidgetsForTopic(topicId')
     }
 
@@ -48,9 +49,24 @@ public class WidgetController {
         return service.findWidgetById(widgetId);
     }
 
-    @PostMapping("/api/widgets")
-    public Widget createWidget(@RequestBody Widget widget) {
-        return service.createWidget(widget);
+//    @PostMapping("/api/widgets")
+//    public Widget createWidget(@RequestBody Widget widget) {
+//        return service.createWidget(widget);
+//    }
+
+    /*
+        + createWidget() :: JZ
+        @PathVariable("topicId") -- extracts the URL placeholder {topicId}
+        then stores it in a local variable 'String tid'.
+        @RequestBody Widget widget -- extracts the JSON object from the
+        http request (client should send a JSON object -- in this case
+        a JSON object for a widget).
+     */
+    @PostMapping("/api/topics/{tid}/widgets")
+    public Widget createWidget(
+            @PathVariable("tid") String tid,
+            @RequestBody Widget widget) {
+        return service.createWidget(tid, widget);
     }
 
     @PutMapping("/api/widgets/{wid}")

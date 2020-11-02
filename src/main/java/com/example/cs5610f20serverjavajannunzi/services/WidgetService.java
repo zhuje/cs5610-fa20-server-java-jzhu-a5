@@ -50,8 +50,9 @@ public class WidgetService {
         return null;
     }
 
-    public Widget createWidget(Widget widget) {
+    public Widget createWidget(String tid, Widget widget) {
         widget.setId((new Date()).toString());
+        widget.setTopicId(tid);
         widgets.add(widget);
         return widget;
     }
