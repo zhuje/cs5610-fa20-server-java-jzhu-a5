@@ -5,6 +5,8 @@ public class Widget {
     private String name;
     private String type;
     private String topicId;
+    private String text;
+    private Integer size;
 
     public Widget(String id, String name, String type) {
         this.id = id;
@@ -18,11 +20,26 @@ public class Widget {
         this.name = name;
         this.type = type;
         this.topicId = topicId;
+        this.text =  "";
+        this.size = 1;
     }
 
     public Widget() {
     }
 
+
+    public Integer getSize() {
+        return size;
+    }
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+    public String getText() {
+        return text;
+    }
+    public void setText(String text) {
+        this.text = text;
+    }
     public String getTopicId() {
         return topicId;
     }
