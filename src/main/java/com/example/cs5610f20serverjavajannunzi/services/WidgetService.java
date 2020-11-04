@@ -100,6 +100,12 @@ public class WidgetService {
       return 0;
     }
 
+    public List<Widget> updateWidgetOrder(List<Widget> newWidgetOrder){
+        widgets = newWidgetOrder;
+
+        return widgets;
+    }
+
 
 
 

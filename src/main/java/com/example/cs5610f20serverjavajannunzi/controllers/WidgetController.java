@@ -81,6 +81,13 @@ public class WidgetController {
         return service.deleteWidget(widgetId);
     }
 
+    @PutMapping("/api/widgets")
+    public List<Widget> updateWidgetOrder(
+            @RequestBody List<Widget> newWidgetOrder) {
+                return service.updateWidgetOrder(newWidgetOrder);
+    }
+
+
 
 
 }
